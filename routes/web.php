@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Versi Mbk Indah
+
 Route::get('/', function () {
     return view('pages.index');
 });
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
+
+
+//Versi Agung
+
+//Langsung memanggil pada view blade
+Route::view('/', 'pages.index');
+Route::view('/dashboard', 'pages.dashboard');
+
+//Memanggil view dengan controller
+Route::get('/', [AuthController::class, 'index'])->name("login");
+Route::get('/dashboard', [HomeController::class, 'index'])->name("dashboard");
 
