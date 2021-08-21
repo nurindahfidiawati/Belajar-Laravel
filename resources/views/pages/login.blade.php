@@ -61,17 +61,17 @@
                                     </a>
                                 </div>
                                 <div class="p-2">
-                                    <form class="form-horizontal" action="{{url('/dashboard')}}">
-        
+                                    <form class="form-horizontal" method="POST" action="{{route('login')}}">
+                                        @csrf 
                                         <div class="mb-3">
-                                            <label for="username" class="form-label">Username</label>
-                                            <input type="text" class="form-control" id="username" placeholder="Enter username">
+                                            <label for="email" class="form-label">email</label>
+                                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
                                         </div>
                 
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
                                             <div class="input-group auth-pass-inputgroup">
-                                                <input type="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon">
+                                                <input type="password" class="form-control" placeholder="Enter password" aria-label="Password" aria-describedby="password-addon" name="password" required>
                                                 <button class="btn btn-light " type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
                                             </div>
                                         </div>
@@ -82,7 +82,12 @@
                                                 Remember me
                                             </label>
                                         </div>
-                                        
+                                        @if (session('message'))
+                                            <div class="alert alert-danger" role="alert">
+                                                {{session('message')}}
+                                            </div>
+                                        @endif
+
                                         <div class="mt-3 d-grid">
                                             <button class="btn btn-primary waves-effect waves-light" type="submit">Log In</button>
                                         </div>

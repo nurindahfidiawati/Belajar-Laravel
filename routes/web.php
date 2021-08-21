@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-});
+Route::get('/', 'otentikasi\OtentikasiController@index')->name('login');
+Route::post('/', 'otentikasi\OtentikasiController@login')->name('login');
+
 Route::get('/dashboard', function () {
     return view('pages.dashboard');
 });
